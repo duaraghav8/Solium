@@ -543,31 +543,31 @@ describe("[RULE] whitespace: Rejections", function() {
 
         code = "call (10\t, 20, 30 ,40,50);",
         errors = Solium.lint(toFunction(code), userConfig);
-		
+
         errors.constructor.name.should.equal("Array");
         errors.length.should.equal(2);
 
         code = "call ({name: \"foo\"\n, age: 20,id: 1 ,dept: \"math\"});",
         errors = Solium.lint(toFunction(code), userConfig);
-		
+
         errors.constructor.name.should.equal("Array");
         errors.length.should.equal(2);
 
         code = "(1 ,2\t,3\n,4);",
         errors = Solium.lint(toFunction(code), userConfig);
-		
+
         errors.constructor.name.should.equal("Array");
         errors.length.should.equal(3);
 
         code = "var (x  , y,z\t,  foo) = (1,2,3,4);",
         errors = Solium.lint(toFunction(code), userConfig);
-		
+
         errors.constructor.name.should.equal("Array");
         errors.length.should.equal(2);
 
         code = "var (x, y, z, foo) = (1 ,2,3\t,4);",
         errors = Solium.lint(toFunction(code), userConfig);
-		
+
         errors.constructor.name.should.equal("Array");
         errors.length.should.equal(2);
 

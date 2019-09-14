@@ -175,10 +175,10 @@ describe("[RULE] operator-whitespace: Rejections", function() {
         let errors;
 
         code = code.map(function(item){return toFunction(item);});
-		
+
         errors = Solium.lint(code [0], userConfig);
         errors.constructor.name.should.equal("Array");
-        errors.length.should.equal(1);
+        errors.length.should.equal(2);
 
         errors = Solium.lint(code [1], userConfig);
         errors.constructor.name.should.equal("Array");
@@ -230,7 +230,7 @@ describe("[RULE] operator-whitespace: Rejections", function() {
 
         errors = Solium.lint(code [13], userConfig);
         errors.constructor.name.should.equal("Array");
-        errors.length.should.equal(1);
+        errors.length.should.equal(2);
 
         errors = Solium.lint(code [14], userConfig);
         errors.constructor.name.should.equal("Array");
@@ -338,4 +338,166 @@ describe("[RULE] operator-whitespace: Rejections", function() {
         done();
     });
 
+});
+
+describe("[RULE] operator-whitespace: Fixes", function() {
+
+    it("should fix whitespace around operators when fix is enabled", function(done) {
+        const testCases = [
+            // Assignments
+            {
+                input: "foo   \t= bar;\n",
+                output: "foo = bar;\n"
+            },
+            {
+                input: "foo =     \t\tbar;\n",
+                output: "foo = bar;\n"
+            },
+            {
+                input: "foo      =      bar;\n",
+                output: "foo = bar;\n"
+            },
+            {
+                input: "foo    +=    bar;",
+                output: "foo += bar;"
+            },
+            {
+                input: "foo  /** **/  +=    bar;",
+                output: "foo += bar;"
+            },
+            {
+                input: "foo   += /** **/   bar;",
+                output: "foo += bar;"
+            },
+            {
+                input: "foo  /** **/ += /** **/   bar;",
+                output: "foo += bar;"
+            },
+            {
+                input: "foo  /** += **/ += /** += **/   bar;",
+                output: "foo += bar;"
+            },
+
+            // Variable declaration
+            {
+                input: "var a = \t\t      \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a\t  \t      \t= \"hello\";",
+                output: "var a = \"hello\";"
+
+            },
+            {
+                input: "var a  \t\t      =  \t\t      \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a= \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a/** **/ = \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a = /** **/ \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a /** **/ = /** **/ \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a /** = **/ = /** = **/ \"hello\";",
+                output: "var a = \"hello\";"
+            },
+            {
+                input: "var a/****/=/****/\"hello\";",
+                output: "var a = \"hello\";"
+            },
+
+            // Multiline binary expressions
+            {
+                input: "if (foo (price, 100)&&\n\n\t++bar) {\n}",
+                output: "if (foo (price, 100)&&\n++bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100)\t\n&&++bar) {\n}",
+                output: "if (foo (price, 100) &&\n++bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100)\t\n&&\n\n\n++bar) {\n}",
+                output: "if (foo (price, 100) &&\n++bar) {\n}"
+            },
+
+            // Binary operators
+            // - force no spacing if no spacing on the left
+            {
+                input: "if (foo (price, 100)&& bar) {\n}",
+                output: "if (foo (price, 100)&&bar) {\n}"
+            },
+
+            // - add missing space on the right
+            {
+                input: "if (foo (price, 100) &&bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100)\t\t\t   &&bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+
+            // - trim extra whitespace
+            {
+                input: "if (foo (price, 100)\t&& bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100)\t\t\t   && bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+
+            // - trim comments
+            {
+                input: "if (foo (price, 100) /** **/ && bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100) && /** **/ bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100) /** **/ && /** **/ bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100) /** **/ &&bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            },
+            {
+                input: "if (foo (price, 100) /** && **/ && /** && d**/ bar) {\n}",
+                output: "if (foo (price, 100) && bar) {\n}"
+            }
+        ];
+
+        testCases.forEach(testCase => {
+            let fixed = Solium.lintAndFix(toFunction(testCase.input), userConfig);
+
+            fixed.should.be.type("object");
+            fixed.should.have.ownProperty("fixedSourceCode");
+            fixed.should.have.ownProperty("errorMessages");
+            fixed.should.have.ownProperty("fixesApplied");
+
+            fixed.fixedSourceCode.should.equal(toFunction(testCase.output));
+            fixed.errorMessages.should.be.Array();
+            fixed.errorMessages.length.should.equal(0);
+
+            fixed.fixesApplied.should.be.Array();
+            fixed.fixesApplied.length.should.be.aboveOrEqual(1);
+        });
+
+        Solium.reset();
+        done();
+    });
 });
