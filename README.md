@@ -5,6 +5,8 @@
 <br />
 
 [![Build Status](https://travis-ci.org/duaraghav8/Ethlint.svg?branch=master)](https://travis-ci.org/duaraghav8/Ethlint)
+[![Backers on Open Collective](https://opencollective.com/Ethlint/backers/badge.svg)](#backers) 
+[![Sponsors on Open Collective](https://opencollective.com/Ethlint/sponsors/badge.svg)](#sponsors) 
 [![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.svg)](https://gitter.im/Solium-linter/Lobby)
 
 Ethlint (Formerly Solium) analyzes your Solidity code for style & security issues and fixes them.
@@ -114,3 +116,33 @@ solium -d contracts/ --fix
 If Ethlint helped make your life simpler, please consider donating ETH to `0xacc661A56af9793a4437876a52F4Ad3fc3C443d6`
 
 #### [IDE and Editor Integrations](http://solium.readthedocs.io/en/latest/user-guide.html#index-9) | [Documentation](https://ethlint.readthedocs.io) | [Demo Video](https://www.youtube.com/watch?v=MlQ6fzwixpI)
+
+## Contributors
+
+This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
+<a href="https://github.com/duaraghav8/Ethlint/graphs/contributors"><img src="https://opencollective.com/Ethlint/contributors.svg?width=890&button=false" /></a>
+
+
+## Backers
+
+Thank you to all our backers! 🙏 [[Become a backer](https://opencollective.com/Ethlint#backer)]
+
+<a href="https://opencollective.com/Ethlint#backers" target="_blank"><img src="https://opencollective.com/Ethlint/backers.svg?width=890"></a>
+
+
+## Sponsors
+
+Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [[Become a sponsor](https://opencollective.com/Ethlint#sponsor)]
+
+<a href="https://opencollective.com/Ethlint/sponsor/0/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/1/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/1/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/2/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/2/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/3/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/3/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/4/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/4/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/5/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/5/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/6/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/6/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/7/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/7/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/8/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/8/avatar.svg"></a>
+<a href="https://opencollective.com/Ethlint/sponsor/9/website" target="_blank"><img src="https://opencollective.com/Ethlint/sponsor/9/avatar.svg"></a>
+
+

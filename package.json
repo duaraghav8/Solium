@@ -9,7 +9,8 @@
   "scripts": {
     "test": "nyc --reporter=text --reporter=html mocha --require should --reporter spec --recursive",
     "lint": "eslint lib/ test/ bin/ config/",
-    "lint-fix": "eslint lib/ test/ bin/ config/ --fix"
+    "lint-fix": "eslint lib/ test/ bin/ config/ --fix",
+    "postinstall": "opencollective-postinstall"
   },
   "keywords": [
     "lint",
@@ -43,11 +44,13 @@
     "eol": "^0.9.1",
     "js-string-escape": "^1.0.1",
     "lodash": "^4.14.2",
+    "opencollective-postinstall": "^2.0.2",
     "sol-digger": "0.0.2",
     "sol-explore": "1.6.1",
     "solium-plugin-security": "0.1.1",
     "solparse": "2.2.8",
-    "text-table": "^0.2.0"
+    "text-table": "^0.2.0",
+    "opencollective": "^1.0.3"
   },
   "devDependencies": {
     "chai": "^3.5.0",
@@ -60,5 +63,9 @@
     "solium-config-test-invalid-syntax": "0.0.0",
     "solium-plugin-test": "0.1.5",
     "solium-plugin-test-invalid-schema": "0.0.0"
+  },
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/Ethlint"
   }
 }
